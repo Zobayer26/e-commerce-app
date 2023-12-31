@@ -28,6 +28,11 @@ const navbarData = [
         icon: MdFormatListBulleted,
         path: "/admin/manage-orders"
     },
+    {
+        label: "Manage Deliveyman",
+        icon: MdFormatListBulleted,
+        path: "/admin/manage-deliveryman"
+    },
 ]
 
 const AdminNav = () => {

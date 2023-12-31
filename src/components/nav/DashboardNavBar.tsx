@@ -1,18 +1,18 @@
 'use client'
 
-import { IoMdMenu } from "react-icons/io";
-import { useCallback, useState } from "react";
-import { FaLessThan, FaGreaterThan } from "react-icons/fa6";
+// import { IoMdMenu } from "react-icons/io";
+// import { useCallback, useState } from "react";
+// import { FaLessThan, FaGreaterThan } from "react-icons/fa6";
 import Container from "../Container";
 
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+// import {
+//     DropdownMenu,
+//     DropdownMenuContent,
+//     DropdownMenuItem,
+//     DropdownMenuLabel,
+//     DropdownMenuSeparator,
+//     DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu"
 import {
     Menubar,
     MenubarContent,
@@ -26,102 +26,10 @@ import {
 
 const DashboardNavBar = (currentUser: any) => {
 
-    const [isOpen, setIsOpen] = useState(false)
-    const toggleOpen = useCallback(() => {
-        setIsOpen(prev => !prev)
-    }, [])
-    console.log(currentUser)
     return (
         <Container>
-            <div className=" max-h-[100px] flex gap-4 items-center mt-2 mb-3 p-1">
-                {currentUser.currentUser === 'admin' ? <>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger>
-                            <div className="flex gap-1 items-center">
-                                <h1>Dashboard</h1>
-                                <IoMdMenu className="text-orange-500 hover:text-orange-300" size={20} />
-                            </div>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>Profile</DropdownMenuItem>
-                            <DropdownMenuItem>Summary</DropdownMenuItem>
-                            <DropdownMenuItem>Add Product</DropdownMenuItem>
-                            <DropdownMenuItem>Manage Product</DropdownMenuItem>
-                            <DropdownMenuItem>Order history</DropdownMenuItem>
-                            <DropdownMenuItem>Customer complain</DropdownMenuItem>
-                            <DropdownMenuItem>Manage user</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-
-                </> :
-                    currentUser.currentUser === 'user' ?
-                        <>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger>
-                                    <div className="flex gap-1 items-center">
-                                        <h1>Dashboard</h1>
-                                        <IoMdMenu className="text-orange-500 hover:text-orange-300" size={20} />
-                                    </div>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                                    <DropdownMenuItem>orders</DropdownMenuItem>
-                                    <DropdownMenuItem>cart</DropdownMenuItem>
-                                    <DropdownMenuItem>Subscription</DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-
-                        </> :
-                        currentUser.currentUser === 'salesman' ? <>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger>
-                                    <div className="flex gap-1 items-center">
-                                        <h1>Dashboard</h1>
-                                        <IoMdMenu className="text-orange-500 hover:text-orange-300" size={20} />
-                                    </div>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                                    <DropdownMenuItem>orders</DropdownMenuItem>
-                                    <DropdownMenuItem>cart</DropdownMenuItem>
-                                    <DropdownMenuItem>Subscription</DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </> :
-                            <> <DropdownMenu>
-                                <DropdownMenuTrigger>
-                                    <div className="flex gap-1 items-center">
-                                        <h1>Dashboard</h1>
-                                        <IoMdMenu className="text-orange-500 hover:text-orange-300" size={20} />
-                                    </div>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                                    <DropdownMenuItem>delivery</DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                            </>
-
-                }
-
-                <div onClick={toggleOpen} className="cursor-pointer flex gap-1 items-center">
-                    <h1>categories</h1>
-                    {isOpen ? <>
-                        <FaLessThan className="text-orange-500 text-md" size={18} />
-                    </> : <FaGreaterThan className="text-orange-500 text-md" size={18} />}
-
-                </div>
-
-                {
-                    isOpen ? <>
+            <div className=" w-[600px] mx-auto max-h-[100px] items-center mb-3 p-1">
+               
                         <Menubar>
                             <MenubarMenu>
                                 <MenubarTrigger>Phone</MenubarTrigger>
@@ -283,9 +191,6 @@ const DashboardNavBar = (currentUser: any) => {
                                 </MenubarContent>
                             </MenubarMenu>
                         </Menubar>
-                    </> : <></>
-                }
-
 
             </div>
         </Container>
@@ -293,3 +198,95 @@ const DashboardNavBar = (currentUser: any) => {
 };
 
 export default DashboardNavBar;
+
+// const [isOpen, setIsOpen] = useState(false)
+    // const toggleOpen = useCallback(() => {
+    //     setIsOpen(prev => !prev)
+    // }, [])
+ {/* <div onClick={toggleOpen} className="cursor-pointer flex gap-1 items-center">
+                    <h1>categories</h1>
+                    {isOpen ? <>
+                        <FaLessThan className="text-orange-500 text-md" size={18} />
+                    </> : <FaGreaterThan className="text-orange-500 text-md" size={18} />}
+
+                </div>
+
+                {
+                    isOpen ? <></>:<></> }*/}
+                     {/* {currentUser.currentUser === 'admin' ? <>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>
+                            <div className="flex gap-1 items-center">
+                                <h1>Dashboard</h1>
+                                <IoMdMenu className="text-orange-500 hover:text-orange-300" size={20} />
+                            </div>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>Profile</DropdownMenuItem>
+                            <DropdownMenuItem>Summary</DropdownMenuItem>
+                            <DropdownMenuItem>Add Product</DropdownMenuItem>
+                            <DropdownMenuItem>Manage Product</DropdownMenuItem>
+                            <DropdownMenuItem>Order history</DropdownMenuItem>
+                            <DropdownMenuItem>Customer complain</DropdownMenuItem>
+                            <DropdownMenuItem>Manage user</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+                </> :
+                    currentUser.currentUser === 'user' ?
+                        <>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <div className="flex gap-1 items-center">
+                                        <h1>Dashboard</h1>
+                                        <IoMdMenu className="text-orange-500 hover:text-orange-300" size={20} />
+                                    </div>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                                    <DropdownMenuItem>orders</DropdownMenuItem>
+                                    <DropdownMenuItem>cart</DropdownMenuItem>
+                                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+
+                        </> :
+                        currentUser.currentUser === 'salesman' ? <>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <div className="flex gap-1 items-center">
+                                        <h1>Dashboard</h1>
+                                        <IoMdMenu className="text-orange-500 hover:text-orange-300" size={20} />
+                                    </div>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                                    <DropdownMenuItem>orders</DropdownMenuItem>
+                                    <DropdownMenuItem>cart</DropdownMenuItem>
+                                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </> :
+                            <> <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <div className="flex gap-1 items-center">
+                                        <h1>Dashboard</h1>
+                                        <IoMdMenu className="text-orange-500 hover:text-orange-300" size={20} />
+                                    </div>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                                    <DropdownMenuItem>delivery</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                            </>
+
+                } */}

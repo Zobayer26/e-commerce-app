@@ -5,18 +5,12 @@ import NavBar from "@/components/nav/NavBar";
 import ProductCart from '@/components/ProductStyle/ProductCart'
 import Container from "@/components/Container";
 import getProducts, { IProductParams } from "@/actions/getProducts";
-import DashboardNavBar from "@/components/nav/DashboardNavBar";
-import { getCurrentUser } from "@/actions/getCurrentUser";
-
 
 type HomeProps = {
   searchParams: IProductParams
 }
 
 export default async function Home({ searchParams }: HomeProps) {
-
-const currentUser= await getCurrentUser()
-
 
 
   const products: any = await getProducts(searchParams)
@@ -25,9 +19,6 @@ const currentUser= await getCurrentUser()
     <div className="flex flex-col min-h-screen">
       <NavBar />
       <div className="flex-grow">
-        <div className="bg-white shadow-md ">
-        <DashboardNavBar currentUser={currentUser?.role} />
-        </div>
         <HomeBanner />
         <Container>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4
@@ -47,3 +38,4 @@ const currentUser= await getCurrentUser()
 };
 
 // export default Home;
+export const revalidate = 0

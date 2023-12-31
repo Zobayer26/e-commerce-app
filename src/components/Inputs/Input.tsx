@@ -2,7 +2,7 @@
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 type InputType = {
     id: string,
-    label: string,
+    label?: string,
     type?: string,
     disabled?: boolean,
     required?: boolean,

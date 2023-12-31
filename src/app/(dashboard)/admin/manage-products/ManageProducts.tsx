@@ -31,7 +31,8 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ products }) => {
                 category: product.category,
                 brand: product.brand,
                 inStock: product.inStock,
-                images: product.image
+                quantity:product.quantity,
+                images: product.images
             }
         })
     }
@@ -55,6 +56,7 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ products }) => {
                 </div>
             }
         },
+        { field: 'quantity', headerName: "Quantity", width: 100 },
         {
             field: 'actions', headerName: "Actions", width: 200,
             renderCell: (params) => {
@@ -62,7 +64,7 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ products }) => {
                     <ActionBtn
                         icon={MdCached}
                         onClick={() => {
-                            handleToggleStock(params.row.id, params.row.inStock)
+                            handleToggleStock(params.row.id)
                         }}
                     />
                     <ActionBtn
@@ -82,20 +84,8 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ products }) => {
         },
     ]
 
-    const handleToggleStock = useCallback((id: string, inStock: boolean) => {
-        fetch('/api/product', {
-            method: "PUT",
-            body: JSON.stringify({
-                id,
-                inStock: !inStock
-            })
-        }).then((res) => {
-            toast.success('Product status Changed')
-            router.refresh()
-        }).catch((err) => {
-            toast.error('Opps! something went Wrong')
-            console.log(err)
-        })
+    const handleToggleStock = useCallback((id: string) => {
+        router.push(`/admin/manage-products/update-product/${id}`)
     }, [])
 
 
@@ -115,7 +105,6 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ products }) => {
                 return console.log("Deleting image error", error)
             }
         }
-        console.log(id)
         await handleImageDelete()
         await fetch(`/api/product/${id}`).then((res) => {
             toast.success('Product deleted')

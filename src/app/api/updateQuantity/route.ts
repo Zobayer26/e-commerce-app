@@ -12,7 +12,17 @@ export async function PUT(req: Request) {
 
     let dataquantity = parseInt(dd?.quantity)
     dataquantity -= quantity
-
+    if (dataquantity <= 0) {
+        const uqq = await prisma.product.update({
+            where: {
+                id: id
+            }, data: {
+                quantity: dataquantity.toString(),
+                inStock: false
+            }
+        })
+        return NextResponse.json({ message: 'update successful' })
+    }
     const qqq = await prisma.product.update({
         where: {
             id: id

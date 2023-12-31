@@ -130,50 +130,55 @@ const ProductDetails: React.FC<singleProductprops> = ({ product }) => {
 
                 </div>
                 <Horizontal />
-                {isProductInCart ? <>
-                    <p className="  mb-2 text-slate-500 flex items-center gap-1">
-                        <MdCheckCircle className="text-orange-400" size={20} />
-                        <span>Product added to Cart  </span>
-                    </p>
-                    <div className="max-w-[300px]">
-                        <Button
-                            custom="bg-orange-500 text-white"
-                            label="View Cart" outline onClick={() => {
-                                router.push('/cart')
-                            }} />
-                    </div>
+
+                {qq <= 0 ? <>
+                <div>not availabe</div>
                 </> :
                     <>
-                        {product.inStock ? <> <div>
-                            <SetColor
-                                cartProduct={cartProduct}
-                                images={product.images}
-                                handleColorSelect={handleColorSelect}
-                            />
-                        </div>
-                            <Horizontal />
-                            <div>
-                                <SetQuantity
-                                    cartProduct={cartProduct}
-                                    handleQuantityDecrease={handleQuantityDecrease}
-                                    handleQuantityIncrease={handleQuantityIncrease}
-                                />
-                            </div>
-                            <Horizontal />
-                            <div className=" max-w-[300px]">
+                        {isProductInCart ? <>
+                            <p className="  mb-2 text-slate-500 flex items-center gap-1">
+                                <MdCheckCircle className="text-orange-400" size={20} />
+                                <span>Product added to Cart  </span>
+                            </p>
+                            <div className="max-w-[300px]">
                                 <Button
-                                    custom="bg-orange-500"
-                                    label="Add to Cart"
-                                    onClick={() => handleAddProductToCart(cartProduct)}
-                                />
-                            </div></> :
-                             <>
-                             <h1>Product is not availabe</h1>
-                             </>
-                             }
+                                    custom="bg-orange-500 text-white"
+                                    label="View Cart" outline onClick={() => {
+                                        router.push('/cart')
+                                    }} />
+                            </div>
+                        </> :
+                            <>
+                                {product.inStock ? <> <div>
+                                    <SetColor
+                                        cartProduct={cartProduct}
+                                        images={product.images}
+                                        handleColorSelect={handleColorSelect}
+                                    />
+                                </div>
+                                    <Horizontal />
+                                    <div>
+                                        <SetQuantity
+                                            cartProduct={cartProduct}
+                                            handleQuantityDecrease={handleQuantityDecrease}
+                                            handleQuantityIncrease={handleQuantityIncrease}
+                                        />
+                                    </div>
+                                    <Horizontal />
+                                    <div className=" max-w-[300px]">
+                                        <Button
+                                            custom="bg-orange-500"
+                                            label="Add to Cart"
+                                            onClick={() => handleAddProductToCart(cartProduct)}
+                                        />
+                                    </div></> :
+                                    <>
+                                        <h1>Product is not availabe</h1>
+                                    </>
+                                }
 
+                            </>}
                     </>}
-
             </div>
         </div>
     );

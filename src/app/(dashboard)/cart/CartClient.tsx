@@ -83,7 +83,7 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
                         custom="bg-orange-500 text-white"
                         outline={currentUser ? false : true}
                         onClick={() => {
-                            currentUser ? router.push('/shipping') : router.push('/log-in')
+                            currentUser ? router.push('/checkout') : router.push('/log-in')
                         }} />
                     <Link href="/"
                         className=" flex items-center gap-1" >

@@ -12,7 +12,7 @@ export async function POST(req: Request) {
         const { otp, orderId } = body
         const user = await prisma.order.findUnique({
             where: {
-                id: orderId
+                id: orderId 
             },
             select: { user: true }
         })
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
         })
         const mailOptions = {
             from: 'zobayerarif126@gmail.com',
-            to: '20103212@iubat.edu',//receiver
+            to:receiver,
             subject: 'OTP',
             text: otp,
         }

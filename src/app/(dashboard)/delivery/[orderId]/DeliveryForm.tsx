@@ -6,14 +6,15 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-
-const DeliveryForm = () => {
+type Iparams = {
+    orderId?: string
+  }
+  
+const DeliveryForm :React.FC<Iparams>= ({ orderId }) => {
     const router = useRouter()
-    const [orderId, setOrderId] = useState<string>("")
     const [checkOtp, setcheckOtp] = useState<string>("")
     const [otp, setOtp] = useState<string>("")
     const [timestamp, setTimestamp] = useState(0)
-    const [validorder, setvalidOrder] = useState("")
 
     const generateotp = async () => {
 
@@ -32,8 +33,6 @@ const DeliveryForm = () => {
                 orderId: orderId
             })
         })
-        setvalidOrder(orderId)
-        setOrderId("")
     }
     const ValidOtp = async (e: any) => {
         e.preventDefault()
@@ -50,11 +49,9 @@ const DeliveryForm = () => {
                 headers: {
                     'content-Type': 'application/json'
                 }, body: JSON.stringify({
-                    orderId: validorder
+                    orderId:orderId
                 })
             })
-            console.log(validorder)
-            setvalidOrder('')
             router.push('/')
         }
         else {
@@ -67,17 +64,8 @@ const DeliveryForm = () => {
             <div className="w-[400px] mt-4 mx-auto"><Heading title="Delivery Validation" /></div>
             <div className="w-[500px] mx-auto bg-orange-300 rounded-md px-10 py-8 mt-10">
                 <div className="mx-auto flex flex-col justify-center items-start gap-4">
-                    <form className="flex">
-                        <input type="text"
-                            className="border p-3"
-                            required placeholder="Enter Order Id"
-                            value={orderId}
-                            onChange={(e) => setOrderId(e.target.value)}
-                        />
-                        <Button custom="bg-orange-500 hover:bg-orange-300"
-                            label="Generate otp" onClick={generateotp} />
-                    </form>
-
+                    <Button custom="bg-orange-500 hover:bg-orange-300"
+                        label="Generate otp" onClick={generateotp} />
                     <form className="flex">
                         <input
                             type="text"

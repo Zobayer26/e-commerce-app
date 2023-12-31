@@ -17,7 +17,7 @@ const AdminNavItem: React.FC<AdminNavItemProps> = ({ selected, label, icon: Icon
        <div className={`pb-2 border-b-2 ${selected ?"border-b-orange-500 text-slate-900" :
        "border-transparent text-slate-500"}`}>
          <Link href={path} className="flex gap-1">
-            <Icon className="text-orange-500" size={20} />
+            <Icon className="text-orange-500 hover:text-orange-300 transition-colors" size={20} />
             <div>{label}</div>
         </Link>
        </div>

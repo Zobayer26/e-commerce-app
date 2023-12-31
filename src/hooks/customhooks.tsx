@@ -38,7 +38,7 @@ export const CartContextProvider = (props: Props) => {
 
         setCartProducts(CProduct)
         setpaymentIntent(paymentIntent)
-    }, [])
+    },[])
 
     useEffect(() => {
         if (cartProducts) {

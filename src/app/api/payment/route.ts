@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 
     const currentUser = await getCurrentUser()
     if (!currentUser) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        return NextResponse.error()
     }
     const body = await req.json()
 
@@ -37,13 +37,13 @@ export async function POST(req: Request) {
     const orderData = {
         user: { connect: { id: currentUser.id } },
         amount: total,
-        currency: "usd",
+        currency: "BDT",
         status: "pending",
         deliveryStatus: "pending",
         payment_id: payment_id,
         products: items,
-        
-        
+
+
     }
 
     if (payment_id) {
@@ -57,11 +57,10 @@ export async function POST(req: Request) {
 
                 }),
                 prisma.order.update({
-                    where: { payment_id:payment_id },
+                    where: { payment_id: payment_id },
                     data: {
                         amount: total,
-                        products: items
-
+                        products: items,
                     }
                 })
             ])
@@ -81,11 +80,11 @@ export async function POST(req: Request) {
         })
         //create  the order
         orderData.payment_id = paymentIntent.id
-       
         await prisma.order.create({
             data: orderData
         })
         return NextResponse.json({ paymentIntent })
     }
+
     return NextResponse.error()
 }

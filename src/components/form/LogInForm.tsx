@@ -46,7 +46,7 @@ const SignInForm: React.FC<currentUserProps> = ({ currentUser }) => {
         })
         if (signInData?.error) {
             toast({
-                title: "Erroe",
+                title: "Error",
                 description: "Opps! Something went wrong!",
                 variant: 'destructive'
             })

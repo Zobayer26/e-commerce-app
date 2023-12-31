@@ -5,7 +5,7 @@ export async function getOrders() {
     try {
 
         const orders = await prisma.order.findMany({
-           select: {
+           include: {
                 user: true
             },
             orderBy: {

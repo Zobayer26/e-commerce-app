@@ -13,7 +13,8 @@ import Heading from '@/components/ProductStyle/Heading'
 
 
 type ShippingFormProps = {
-    currentUser: any
+    currentUser: any,
+    orderId:string
 }
 
 const FormSchema = z.object({
@@ -25,7 +26,7 @@ const FormSchema = z.object({
     notes: z.string()
 })
 
-const ShippingForm: React.FC<ShippingFormProps> =  ({ currentUser }) => {
+const ShippingForm: React.FC<ShippingFormProps> =  ({ currentUser ,orderId}) => {
     const router = useRouter()
     const { toast } = useToast()
 
@@ -60,7 +61,8 @@ const ShippingForm: React.FC<ShippingFormProps> =  ({ currentUser }) => {
                 phone: values.phone,
                 address: values.address,
                 district: values.district,
-                notes: values.notes
+                notes: values.notes,
+                orderId:orderId
                 
             })
         })
@@ -71,8 +73,7 @@ const ShippingForm: React.FC<ShippingFormProps> =  ({ currentUser }) => {
                 description: "shipping information create successfully!",
                 variant: 'default'
             })
-            router.push('/checkout')
-            alert(res.text)
+            router.push('/')
         } else {
             toast({
                 title: "Error",

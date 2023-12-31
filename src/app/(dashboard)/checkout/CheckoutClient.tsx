@@ -8,6 +8,8 @@ import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js"
 import CheckoutForm from "./CheckoutForm";
 import Button from "@/components/CustomButton";
+import prisma from "@/lib/prisma";
+
 
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
@@ -21,7 +23,7 @@ const CheckoutClient = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [paymentSuccess, setpaymentSuccess] = useState(false)
-
+    const [paymentId, setpaymentId] = useState('')
     useEffect(() => {
         if (cartProducts) {
             setLoading(true)
@@ -42,7 +44,8 @@ const CheckoutClient = () => {
             }).then((data) => {
                 setClientSecret(data.paymentIntent.client_secret)
                 handleSetPaymentIntent(data.paymentIntent.id)
-            }).catch((error:any) => {
+                setpaymentId(data.paymentIntent.id)
+            }).catch((error: any) => {
                 setError(true)
                 console.log(error)
                 toast.error('something went wrong!')
@@ -87,18 +90,17 @@ const CheckoutClient = () => {
                 </div>
             }
             {
-                paymentSuccess && 
+                paymentSuccess &&
                 <div className="flex items-center flex-col gap-4">
-                    <div className="text-teal-500 ">
-                        Payment Success </div>
+                    <div className="text-teal-500 ">Payment Success</div>
+                    <div>please add shipping details</div>
                     <div className="max-w-[220px] w-full">
-                        <Button label="view your orders"
-                        custom="bg-orange-500 hover:bg-orange-300"
-                            onClick={() => router.push('/orders')} />
+                        <Button label="add shipping details"
+                            custom="bg-orange-500 hover:bg-orange-300"
+                            onClick={() => router.push(`/shipping/${paymentId}`)} />
                     </div>
                 </div>
             }
-
         </div>
     );
 };

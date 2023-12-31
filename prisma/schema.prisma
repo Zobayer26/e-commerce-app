@@ -27,19 +27,48 @@ model Account {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
   name          String
-  username      String    @unique
-  email         String    @unique
+  username      String       @unique
+  email         String       @unique
   image         String?
   password      String
   emailVerified DateTime?
-  role          Role      @default(user)
-  createdAt     DateTime  @default(now())
-  updateAt      DateTime  @updatedAt
+  role          Role         @default(user)
+  createdAt     DateTime     @default(now())
+  updateAt      DateTime     @updatedAt
   Account       Account[]
   orders        Order[]
   reviews       Review[]
+  profile       Profile?
+  deliveryman   Deliveryman?
+}
+
+model Profile {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  phone     String?
+  Address   String?
+  birthdate DateTime?
+  Gender    Gender?
+  Bio       String?
+  userId    String    @unique @db.ObjectId
+  userinfo  User      @relation(fields: [userId], references: [id])
+}
+
+model Deliveryman {
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  phone            String         @unique
+  status           DeliveryStatus @default(available)
+  jobtype          Workdetails
+  contactname      String
+  relation         String
+  emargencycontact String
+  joindate         DateTime       @default(now())
+  nid              String         @unique
+  area             String
+  userId           String         @unique @db.ObjectId
+  user             User?          @relation(fields: [userId], references: [id])
+  delivery         DeliverOrder[]
 }
 
 model Product {
@@ -51,7 +80,7 @@ model Product {
   category    String
   inStock     Boolean
   quantity    String
-  images       Image[]
+  images      Image[]
   reviews     Review[]
 }
 
@@ -78,7 +107,7 @@ model Order {
   products       CartProduct[]
   address        Address?
   user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Shipping       Shipping[]
+  Shipping       Shipping?
 }
 
 model Shipping {
@@ -89,8 +118,8 @@ model Shipping {
   address  String
   district String
   notes    String? @default("No special notes")
-  orderId  String  @db.ObjectId
-  order    Order   @relation(fields: [orderId], references: [id])
+  orderId  String? @unique @db.ObjectId
+  order    Order?  @relation(fields: [orderId], references: [id])
 }
 
 type CartProduct {
@@ -122,5 +151,34 @@ type Address {
 enum Role {
   user
   admin
-  salseman
+  deliveryman
+}
+
+enum Gender {
+  male
+  felmale
+  others
+}
+
+enum DeliveryStatus {
+  available
+  unavailable
+}
+
+enum Workdetails {
+  fulltime
+  partime
+}
+
+model DeliverOrder {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  orderId       String
+  deliverymanId String?      @db.ObjectId
+  customername  String
+  phone         String
+  district      String
+  address       String
+  customerphone String
+  notes         String
+  Delivery      Deliveryman? @relation(fields: [deliverymanId], references: [id])
 }

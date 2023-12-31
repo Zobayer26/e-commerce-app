@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
     },
     pages: {
         signIn: '/log-in',
-        // signOut:''
+        // signOut:'/log-in'
     },
     providers: [
         GoogleProvider({

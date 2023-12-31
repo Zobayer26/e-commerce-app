@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma genarate"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -23,6 +24,7 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.2.2",
+    "@tanstack/react-table": "^8.11.2",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "chart.js": "^4.4.1",

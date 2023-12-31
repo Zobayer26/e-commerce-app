@@ -13,11 +13,12 @@ import { useRouter } from "next/navigation";
 import moment from "moment";
 
 type ManageOrdersProps = {
-    orders: ExtendedOrder[]
+    orders:  ExtendedOrder[]
 }
 type ExtendedOrder = Order & {
     user: User
 }
+
 
 const ManageOrders: React.FC<ManageOrdersProps> = ({ orders }) => {
 
@@ -25,11 +26,11 @@ const ManageOrders: React.FC<ManageOrdersProps> = ({ orders }) => {
 
     let rows: any = []
     if (orders) {
-        rows = orders.map((order) => {
+        rows = orders.map((order,index) => {
             return {
-                id: order.id,
+                id:order.id,
                 Customer: order.user.name,
-                amount: formatCurrency(order.amount / 100),
+                amount: formatCurrency(order.amount),
                 paymentStatus: order.status,
                 date: moment(order.createDate).fromNow(),
                 deliveryStatus: order.deliveryStatus,
@@ -106,7 +107,7 @@ const ManageOrders: React.FC<ManageOrdersProps> = ({ orders }) => {
             })
         }).then((res) => {
             toast.success('Order Dispatch')
-            router.refresh()
+            router.push(`/admin/assign-delivery/${id}`)
         }).catch((err) => {
             toast.error('Opps! something went Wrong')
             console.log(err)
@@ -139,6 +140,7 @@ const ManageOrders: React.FC<ManageOrdersProps> = ({ orders }) => {
                 <DataGrid
                     rows={rows}
                     columns={columns}
+                    getRowId={(row) => row.id}
                     initialState={{
                         pagination: {
                             paginationModel: { page: 0, pageSize: 9 },
