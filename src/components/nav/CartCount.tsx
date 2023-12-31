@@ -1,11 +1,11 @@
 'use client'
 
-import { customHooks } from "@/hooks/CustomHooks";
+import { useCart } from "@/hooks/useCart";
 import { useRouter } from "next/navigation";
 import { TiShoppingCart } from "react-icons/ti";
 
 const CartCount = () => {
-    const { cartTotalQty } = customHooks()
+    const { cartTotalQty } = useCart()
     const router = useRouter()
     return (
         <div className=" relative cursor-pointer"

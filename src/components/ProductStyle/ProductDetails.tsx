@@ -6,7 +6,7 @@ import SetColor from "./SetColor";
 import SetQuantity from "./SetQuantity";
 import Button from "../CustomButton";
 import ProductImage from "./ProductImage";
-import { customHooks } from "@/hooks/CustomHooks";
+import { useCart} from "@/hooks/useCart";
 import { MdCheckCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -39,7 +39,7 @@ const Horizontal = () => {
 const ProductDetails: React.FC<singleProductprops> = ({ product }) => {
     const qq = product.quantity
     const router = useRouter()
-    const { handleAddProductToCart, cartProducts } = customHooks()
+    const { handleAddProductToCart, cartProducts } = useCart()
     const [isProductInCart, setisProductInCart] = useState(false)
     const [cartProduct, setCartProduct] = useState<Cartproduct>({
         id: product.id,

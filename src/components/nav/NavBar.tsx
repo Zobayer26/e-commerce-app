@@ -29,8 +29,8 @@ const NavBar = async () => {
                 </div>
             </div>
             <div className="bg-white shadow-md">
-                    <DashboardNavBar currentUser={currentUser?.role} />
-                </div>
+                <DashboardNavBar />
+            </div>
         </div>
 
     );

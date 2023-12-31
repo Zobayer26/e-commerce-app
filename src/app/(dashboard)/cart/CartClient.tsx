@@ -3,7 +3,7 @@
 
 import Button from "@/components/CustomButton";
 import Heading from "@/components/ProductStyle/Heading";
-import { customHooks } from "@/hooks/CustomHooks";
+import { useCart } from "@/hooks/useCart";
 import Link from "next/link";
 import { MdArrowBack } from "react-icons/md";
 import ItemContent from "./ItemContent";
@@ -18,7 +18,7 @@ type CartClientProps = {
 const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
 
     const router = useRouter()
-    const { cartProducts, handleClearCart, cartTotalAmount } = customHooks()
+    const { cartProducts, handleClearCart, cartTotalAmount } = useCart()
     if (!cartProducts || cartProducts.length === 0) {
         return (
             <div className="flex flex-col items-center">

@@ -2,7 +2,7 @@ import { Cartproduct } from "@/components/ProductStyle/ProductDetails";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { toast } from 'react-hot-toast';
 
-type useCartContextType = {
+type CartContextType = {
     cartTotalQty: number,
     cartTotalAmount: number,
     cartProducts: Cartproduct[] | null,
@@ -19,9 +19,9 @@ type Props = {
     [propsName: string]: any
 }
 
-export const useCartContext = createContext<useCartContextType | null>(null)
+export const CartContext = createContext<CartContextType | null>(null)
 
-export const useCartContextProvider = (props: Props) => {
+export const CartContextProvider = (props: Props) => {
 
 
     const [cartTotalQty, setCartTotalQty] = useState(0)
@@ -61,8 +61,7 @@ export const useCartContextProvider = (props: Props) => {
         }
 
     }, [cartProducts])
-    // console.log(cartTotalAmount)
-
+    
     const handleAddProductToCart = useCallback(async (product: Cartproduct) => {
         setCartProducts((prev) => {
             let updatedCart;
@@ -86,7 +85,7 @@ export const useCartContextProvider = (props: Props) => {
             },
             body: JSON.stringify({
                 id: product.id,
-                quantity: product.qunatity  // product.id, null, product.qunatity
+                quantity: product.qunatity  
             })
         })
         if (res.ok) {
@@ -174,10 +173,10 @@ export const useCartContextProvider = (props: Props) => {
         paymentIntent
 
     }
-    return <useCartContext.Provider value={value} {...props} />
+    return <CartContext.Provider value={value} {...props} />
 }
-export const customHooks = () => {
-    const context = useContext(useCartContext)
+export const useCart = () => {
+    const context = useContext(CartContext)
     if (context === null) {
         throw new Error("useCart must  be within a CartContexProvider")
     }

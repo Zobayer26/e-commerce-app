@@ -2,7 +2,7 @@
 
 import Button from "@/components/CustomButton";
 import Heading from "@/components/ProductStyle/Heading";
-import { customHooks } from "@/hooks/CustomHooks";
+import { useCart } from "@/hooks/useCart";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { AddressElement, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ type CheckoutFormProps = {
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret, handlesetPaymentSuccess }) => {
 
-    const { cartTotalAmount, handleClearCart, handleSetPaymentIntent } = customHooks()
+    const { cartTotalAmount, handleClearCart, handleSetPaymentIntent } = useCart()
     const stripe = useStripe()
     const elements = useElements()
     const [isLoading, setIsLoading] = useState(false)

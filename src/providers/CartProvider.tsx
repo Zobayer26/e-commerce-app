@@ -1,6 +1,6 @@
 'use client'
 
-import { CartContextProvider } from "@/hooks/CustomHooks";
+import { CartContextProvider } from "@/hooks/useCart";
 
 type CartProvidertype = {
     children: React.ReactNode

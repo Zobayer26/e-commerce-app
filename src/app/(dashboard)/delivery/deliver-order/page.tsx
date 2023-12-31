@@ -1,9 +1,8 @@
 import getDeliveryorder from "@/actions/getDeliveryorder";
 import ManageDeliverOrder from "./ManageDeliverOrder";
-import { getCurrentUser } from "@/actions/getCurrentUser";
 
 
-const page = async () => {
+const DeliverOrderPage = async () => {
     const deliverOrder: any = await getDeliveryorder()
     
     return (
@@ -13,4 +12,4 @@ const page = async () => {
     );
 };
 
-export default page;
+export default DeliverOrderPage;

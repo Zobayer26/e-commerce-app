@@ -2,7 +2,7 @@
 
 import { Cartproduct } from "@/components/ProductStyle/ProductDetails";
 import SetQuantity from "@/components/ProductStyle/SetQuantity";
-import { customHooks } from "@/hooks/CustomHooks";
+import { useCart } from "@/hooks/useCart";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { truncateText } from "@/utils/truncateText";
 import Image from "next/image";
@@ -14,7 +14,7 @@ type ItemContenType = {
 }
 
 const ItemContent: React.FC<ItemContenType> = ({ item }) => {
-    const { handleRemoveProducttoCart, handleCartQtyIncrease, handleCartQtyDecrease } = customHooks()
+    const { handleRemoveProducttoCart, handleCartQtyIncrease, handleCartQtyDecrease } = useCart()
     return (
         <div className="grid grid-cols-5 text-xs md:text-sm gap-4 border-t-[1.5px] 
         border-slate-200 py-4 items-center ">
