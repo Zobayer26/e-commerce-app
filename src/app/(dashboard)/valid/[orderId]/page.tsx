@@ -5,7 +5,7 @@ type Iparams = {
   orderId?: string
 }
 
-const DeliverOrder = ({ params }: { params: Iparams }) => {
+const SendOrder = ({ params }: { params: Iparams }) => {
   const orderId: any = params.orderId
   return (
     <Container>
@@ -14,4 +14,4 @@ const DeliverOrder = ({ params }: { params: Iparams }) => {
   );
 };
 
-export default DeliverOrder;
+export default SendOrder;

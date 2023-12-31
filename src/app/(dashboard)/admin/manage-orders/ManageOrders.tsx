@@ -26,7 +26,7 @@ const ManageOrders: React.FC<ManageOrdersProps> = ({ orders }) => {
 
     let rows: any = []
     if (orders) {
-        rows = orders.map((order,index) => {
+        rows = orders.map((order) => {
             return {
                 id:order.id,
                 Customer: order.user.name,

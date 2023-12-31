@@ -1,3 +1,4 @@
+'use client'
 import { formatCurrency } from "@/utils/formatCurrency";
 import { truncateText } from "@/utils/truncateText";
 import { CartProduct } from "@prisma/client";

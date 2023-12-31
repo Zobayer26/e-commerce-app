@@ -3,27 +3,26 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import Heading from "@/components/ProductStyle/Heading";
 
-import { MdAccessTimeFilled, MdDeliveryDining, MdDone, MdRemoveRedEye } from "react-icons/md";
+import { MdDeliveryDining} from "react-icons/md";
 import ActionBtn from "@/components/ActionBtn";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { DeliverOrder } from "@prisma/client";
 
-type ManageDeliveryProps = {
+type ManageDeliverOrderProps = {
     deliveryinfo: DeliverOrder[]
 }
 
 
-const ManageDeliverOrder: React.FC<ManageDeliveryProps> = ({ deliveryinfo }) => {
+const ManageDeliverOrder: React.FC<ManageDeliverOrderProps> = ({ deliveryinfo }) => {
 
     const router = useRouter()
-
-    let rows: any = []
+    let rows:any = []
     if (deliveryinfo) {
-        rows = deliveryinfo.map((item,) => {
+        rows = deliveryinfo.map((item) => {
             return {
-                id: item.id,
+                id:item.id,
                 orderId: item.orderId,
                 deliverymanId: item.deliverymanId,
                 customername: item.customername,
@@ -62,7 +61,7 @@ const ManageDeliverOrder: React.FC<ManageDeliveryProps> = ({ deliveryinfo }) => 
     ]
     const handleDeliver = useCallback((orderId: string) => {
         toast.success('Order Dispatch')
-        router.push(`/delivery/${orderId}`)
+        router.push(`/valid/${orderId}`)
     }, [])
 
     return (
@@ -89,9 +88,6 @@ const ManageDeliverOrder: React.FC<ManageDeliveryProps> = ({ deliveryinfo }) => 
         </div>
     );
 };
-export default ManageDeliverOrder
-
-
-
+export default ManageDeliverOrder 
 
 
