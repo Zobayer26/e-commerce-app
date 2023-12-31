@@ -8,7 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa"
-import { customHooks } from "@/hooks/customhooks";
+import { customHooks } from "@/hooks/CustomHooks";
 import { useCallback, useEffect, useState } from "react";
 interface ProductCartProps {
     data: any

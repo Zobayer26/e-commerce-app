@@ -3,16 +3,18 @@ import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server"
 
 
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(req: Request) {
 
     const currentUser = await getCurrentUser()
     if (!currentUser || currentUser.role !== 'admin') {
         return NextResponse.error()
     }
+    const body = await req.json()
+    const { id } = body
 
     const product = await prisma.product?.delete({
         where: {
-            id: params.id,
+            id: id,
         }
     })
     return NextResponse.json(product)

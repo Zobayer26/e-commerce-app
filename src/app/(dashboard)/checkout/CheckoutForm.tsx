@@ -2,7 +2,7 @@
 
 import Button from "@/components/CustomButton";
 import Heading from "@/components/ProductStyle/Heading";
-import { customHooks } from "@/hooks/customhooks";
+import { customHooks } from "@/hooks/CustomHooks";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { AddressElement, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";

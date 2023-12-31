@@ -3,7 +3,7 @@
 
 import Button from "@/components/CustomButton";
 import Heading from "@/components/ProductStyle/Heading";
-import { customHooks } from "@/hooks/customhooks";
+import { customHooks } from "@/hooks/CustomHooks";
 import Link from "next/link";
 import { MdArrowBack } from "react-icons/md";
 import ItemContent from "./ItemContent";

@@ -2,7 +2,7 @@
 
 import { Cartproduct } from "@/components/ProductStyle/ProductDetails";
 import SetQuantity from "@/components/ProductStyle/SetQuantity";
-import { customHooks } from "@/hooks/customhooks";
+import { customHooks } from "@/hooks/CustomHooks";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { truncateText } from "@/utils/truncateText";
 import Image from "next/image";

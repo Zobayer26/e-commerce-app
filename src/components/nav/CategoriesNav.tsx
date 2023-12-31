@@ -22,11 +22,13 @@ const CategoriesNav = () => {
                 <div className="pt-4 flex flex-row items-center justify-between
                 overflow-x-auto ">
                     {categories.map((item) => (
-                        <SingleCategory
+                       <div key={item.label}>
+                         <SingleCategory
                             label={item.label}
                             icon={item.icon}
                             selected={category === item.label || (category === null && item.label === 'All')}
                         />
+                       </div>
 
                     ))}
                 </div>

@@ -106,7 +106,9 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ products }) => {
             }
         }
         await handleImageDelete()
-        await fetch(`/api/product/${id}`).then((res) => {
+        await fetch(`/api/product/${id}`,{
+            method:'DELETE'
+        }).then((res) => {
             toast.success('Product deleted')
             router.refresh()
         }).catch((err) => {

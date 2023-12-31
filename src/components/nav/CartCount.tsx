@@ -1,6 +1,6 @@
 'use client'
 
-import { customHooks } from "@/hooks/customhooks";
+import { customHooks } from "@/hooks/CustomHooks";
 import { useRouter } from "next/navigation";
 import { TiShoppingCart } from "react-icons/ti";
 

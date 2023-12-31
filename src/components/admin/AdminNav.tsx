@@ -42,12 +42,14 @@ const AdminNav = () => {
             <Container>
                 <div className="flex justify-between md:justify-center md:gap-12">
                     {navbarData.map((item) => (
-                        <AdminNavItem
+                     <div key={item.label}>
+                           <AdminNavItem 
                             label={item.label}
                             icon={item.icon}
                             path={item.path}
                             selected={pathname === item.path}
                         />
+                     </div>
                     ))}
                 </div>
             </Container>

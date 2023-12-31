@@ -6,7 +6,7 @@ import SetColor from "./SetColor";
 import SetQuantity from "./SetQuantity";
 import Button from "../CustomButton";
 import ProductImage from "./ProductImage";
-import { customHooks } from "@/hooks/customhooks";
+import { customHooks } from "@/hooks/CustomHooks";
 import { MdCheckCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";

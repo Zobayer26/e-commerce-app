@@ -2,7 +2,7 @@ import { Cartproduct } from "@/components/ProductStyle/ProductDetails";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { toast } from 'react-hot-toast';
 
-type cartContextType = {
+type useCartContextType = {
     cartTotalQty: number,
     cartTotalAmount: number,
     cartProducts: Cartproduct[] | null,
@@ -19,9 +19,9 @@ type Props = {
     [propsName: string]: any
 }
 
-export const cartContext = createContext<cartContextType | null>(null)
+export const useCartContext = createContext<useCartContextType | null>(null)
 
-export const CartContextProvider = (props: Props) => {
+export const useCartContextProvider = (props: Props) => {
 
 
     const [cartTotalQty, setCartTotalQty] = useState(0)
@@ -174,10 +174,10 @@ export const CartContextProvider = (props: Props) => {
         paymentIntent
 
     }
-    return <cartContext.Provider value={value} {...props} />
+    return <useCartContext.Provider value={value} {...props} />
 }
 export const customHooks = () => {
-    const context = useContext(cartContext)
+    const context = useContext(useCartContext)
     if (context === null) {
         throw new Error("useCart must  be within a CartContexProvider")
     }
