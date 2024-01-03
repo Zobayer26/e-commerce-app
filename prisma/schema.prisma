@@ -1,0 +1,184 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model User {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  username      String       @unique
+  email         String       @unique
+  image         String?
+  password      String
+  emailVerified DateTime?
+  role          Role         @default(user)
+  createdAt     DateTime     @default(now())
+  updateAt      DateTime     @updatedAt
+  Account       Account[]
+  orders        Order[]
+  reviews       Review[]
+  profile       Profile?
+  deliveryman   Deliveryman?
+}
+
+model Profile {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  phone     String?
+  Address   String?
+  birthdate DateTime?
+  Gender    Gender?
+  Bio       String?
+  userId    String    @unique @db.ObjectId
+  userinfo  User      @relation(fields: [userId], references: [id])
+}
+
+model Deliveryman {
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  phone            String         @unique
+  status           DeliveryStatus @default(available)
+  jobtype          Workdetails
+  contactname      String
+  relation         String
+  emargencycontact String
+  joindate         DateTime       @default(now())
+  nid              String         @unique
+  area             String
+  userId           String         @unique @db.ObjectId
+  user             User?          @relation(fields: [userId], references: [id])
+  delivery         DeliverOrder[]
+}
+
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  price       Float
+  brand       String
+  category    String
+  inStock     Boolean
+  quantity    String
+  images      Image[]
+  reviews     Review[]
+}
+
+model Review {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  product     Product  @relation(fields: [productId], references: [id])
+  productId   String   @db.ObjectId
+  rating      Int
+  comment     String
+  createdDate DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String        @db.ObjectId
+  amount         Float
+  currency       String
+  status         String
+  deliveryStatus String
+  createDate     DateTime      @default(now())
+  payment_id     String        @unique
+  products       CartProduct[]
+  address        Address?
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Shipping Shipping?
+}
+
+model Shipping {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String
+  phone    String
+  address  String
+  district String
+  notes    String? @default("No special notes")
+  orderId  String? @unique @db.ObjectId
+  order    Order?  @relation(fields: [orderId], references: [id])
+}
+
+type CartProduct {
+  id          String
+  name        String
+  description String
+  category    String
+  brand       String
+  selectedImg Image
+  qunatity    Int
+  price       Float
+}
+
+type Image {
+  color     String
+  colorCode String
+  image     String
+}
+
+type Address {
+  city        String
+  country     String
+  line1       String
+  line2       String
+  postal_code String
+  state       String
+}
+
+enum Role {
+  user
+  admin
+  deliveryman
+}
+
+enum Gender {
+  male
+  felmale
+  others
+}
+
+enum DeliveryStatus {
+  available
+  unavailable
+}
+
+enum Workdetails {
+  fulltime
+  partime
+}
+
+model DeliverOrder {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  orderId       String
+  deliverymanId String?      @db.ObjectId
+  customername  String
+  phone         String
+  district      String
+  address       String
+  customerphone String
+  notes         String
+  Delivery      Deliveryman? @relation(fields: [deliverymanId], references: [id])
+}
