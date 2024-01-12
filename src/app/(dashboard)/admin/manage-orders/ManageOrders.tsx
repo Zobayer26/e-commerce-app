@@ -90,12 +90,12 @@ const ManageOrders: React.FC<ManageOrdersProps> = ({ orders }) => {
                             handleProcessing(params.row.id)
                         }}
                     />
-                    <ActionBtn
+                    {/* <ActionBtn
                         icon={MdDone}
                         onClick={() => {
                             handleDelivered(params.row.id)
                         }}
-                    />
+                    /> */}
                     <ActionBtn
                         icon={MdRemoveRedEye}
                         onClick={() => {

@@ -87,7 +87,7 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
             <div className="grid grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                 {summaryKeys && summaryKeys.map((key) => (
                     <div key={key}
-                        className="rounded-xl border-2 p-4 flex flex-col items-center gap-2 
+                        className="rounded-xl border-2 border-orange-300 p-4 flex flex-col items-center gap-2 
                     transition">
                         <div className="text-xl md:text-4xl font-bold">
                             {summaryData[key].label === 'Total Sale' ?

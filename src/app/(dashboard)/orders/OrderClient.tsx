@@ -5,9 +5,11 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { formatCurrency } from "@/utils/formatCurrency";
 import Heading from "@/components/ProductStyle/Heading";
 import Status from "@/components/Status";
-import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from "react-icons/md";
+import { MdAccessTimeFilled, MdDeliveryDining, MdDone, MdRemoveRedEye } from "react-icons/md";
 import moment from "moment";
 import { FcProcess } from "react-icons/fc";
+import ActionBtn from "@/components/ActionBtn";
+import { useRouter } from "next/navigation";
 
 type OrderClientProps = {
     orders: ExtendedOrder[]
@@ -17,7 +19,7 @@ type ExtendedOrder = Order & {
 }
 
 const OrderClientPage: React.FC<OrderClientProps> = ({ orders }) => {
-
+    const router = useRouter()
 
     let rows: any = []
     if (orders) {
@@ -68,7 +70,20 @@ const OrderClientPage: React.FC<OrderClientProps> = ({ orders }) => {
             }
         },
         { field: 'date', headerName: "Date", width: 130 },
+        {
+            field: 'actions', headerName: "Actions", width: 200,
+            renderCell: (params) => {
+                return <div className=" flex justify-between gap-4 w-full" >
 
+                    <ActionBtn
+                        icon={MdRemoveRedEye}
+                        onClick={() => {
+                            router.push(`/order/${params.row.id}`)
+                        }}
+                    />
+                </div>
+            }
+        }
     ]
 
 

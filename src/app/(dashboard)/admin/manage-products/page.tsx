@@ -8,7 +8,7 @@ const ManageProductPage = async () => {
 
     const products:any = await getProducts({ category: null })
     const currentUser = await getCurrentUser()
-    if (!currentUser || currentUser.role === 'user') {
+    if (!currentUser || currentUser.role !== 'admin') {
         return <NullData title=" Access denied" />
     }
     return (

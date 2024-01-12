@@ -14,9 +14,9 @@ const AdminPage = async () => {
     const users = await getUsers()
     const graphData = await getGraphData()
     const currentUser = await getCurrentUser()
-    // if (!currentUser || currentUser.role !== 'admin') {
-    //     return <NullData title="Oop! Access Denied" />
-    // }
+    if (!currentUser || currentUser.role !== 'admin') {
+        return <NullData title="Oop! Access Denied" />
+    }
     return (
         <div className="pt-8">
             <Container>

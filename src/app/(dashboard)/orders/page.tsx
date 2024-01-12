@@ -10,7 +10,7 @@ const ManageOrderPage = async () => {
 
 
     const currentUser = await getCurrentUser()
-    if (!currentUser) {
+    if (currentUser?.role !== 'user') {
         return <NullData title=" Access denied" />
     }
     const orders = await getOrderByUserId(currentUser.id)

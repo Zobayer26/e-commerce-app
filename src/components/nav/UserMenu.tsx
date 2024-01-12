@@ -8,7 +8,6 @@ import Link from "next/link";
 import MenuItem from "./MenuItem";
 import { signOut } from 'next-auth/react'
 import BackDrop from "./BackDrop";
-// import { SafeUser } from "@/types";
 
 type currentUserProps = {
     currentUser: any
@@ -43,27 +42,7 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
                                         <div>
                                             <Link href="/admin">
                                                 <MenuItem onClick={toggleOpen}> profile </MenuItem>
-                                            </Link>
-                                            {/* <Link href="/admin/add-product">
-                                                <MenuItem onClick={toggleOpen}>add product</MenuItem>
-                                            </Link>
-                                            <Link href="/admin/manage-products">
-                                                <MenuItem onClick={toggleOpen}> manage product</MenuItem>
-                                            </Link>
-
-                                            <Link href="/admin/manage-orders">
-                                                <MenuItem onClick={toggleOpen}>order history</MenuItem>
-                                            </Link>
-                                            <Link href="/admin">
-                                                <MenuItem onClick={toggleOpen}> summary </MenuItem>
-                                            </Link>
-                                            <Link href="/admin/manage-deliveryman">
-                                                <MenuItem onClick={toggleOpen}> Deliveryman Information </MenuItem>
-                                            </Link>
-                                            <Link href="/admin/manage-user">
-                                                <MenuItem onClick={toggleOpen}> Accept deliveryman </MenuItem>
-                                            </Link> */}
-                                            
+                                            </Link>    
                                             <hr />
                                             <MenuItem onClick={() => {
                                                 toggleOpen();
@@ -77,13 +56,10 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
                                         <>
                                             {currentUser.role === 'user' ? <>
                                                 <div>
-                                                    <Link href="#">
+                                                    <Link href="/profile">
                                                         <MenuItem onClick={toggleOpen}> profile </MenuItem>
                                                     </Link>
-                                                    <Link href="#">
-                                                        <MenuItem onClick={toggleOpen}>cart</MenuItem>
-                                                    </Link>
-                                                    <Link href="#">
+                                                    <Link href="/orders">
                                                         <MenuItem onClick={toggleOpen}>orders</MenuItem>
                                                     </Link>
                                                     <hr />
@@ -96,11 +72,11 @@ const UserMenu: React.FC<currentUserProps> = ({ currentUser }) => {
                                                 </div>
                                             </> : <>
                                                 <div>
-                                                    <Link href={`/deliveryman_profile/${currentUser.id}`}>
+                                                    <Link href={`/deliveryman_profile`}>
                                                         <MenuItem onClick={toggleOpen}> Profile </MenuItem>
                                                     </Link>
 
-                                                    <Link href="delivery-order">
+                                                    <Link href="/delivery-order">
                                                         <MenuItem onClick={toggleOpen}>Deliver order</MenuItem>
                                                     </Link>
                                                     <hr />

@@ -3,7 +3,7 @@
 import Container from "@/components/Container";
 import AdminNavItem from "./AdminNavItem";
 import { MdDashboard, MdLibraryAdd, MdDns, MdFormatListBulleted } from "react-icons/md";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
     DropdownMenu,
@@ -45,6 +45,7 @@ const navbarData = [
 ]
 
 const AdminNav = () => {
+    const router = useRouter()
     const pathname = usePathname()
     return (
         <div className="w-full top-20 shadow-sm border-b-[1px]  pt-4">
@@ -54,20 +55,26 @@ const AdminNav = () => {
                         <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <div className="flex gap-1 items-center">
-                                <MdDashboardCustomize size={25}
-                                 className="text-orange-500 hover:text-orange-300"/>
+                                    <MdDashboardCustomize size={25}
+                                        className="text-orange-500 hover:text-orange-300" />
                                     <h1>Dashboard</h1>
-                                    
+
                                 </div>
 
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>add product</DropdownMenuItem>
-                                <DropdownMenuItem>manage product</DropdownMenuItem>
-                                <DropdownMenuItem>manage order</DropdownMenuItem>
-                                <DropdownMenuItem>manage user</DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <div onClick={() => router.push('/profile')}>
+                                        manage profile
+                                    </div>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <div onClick={() => router.push('/admin/manage-user')}>
+                                        manage user
+                                    </div>
+                                </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
 

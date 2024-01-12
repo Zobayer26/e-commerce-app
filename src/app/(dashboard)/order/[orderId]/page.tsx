@@ -18,7 +18,7 @@ const OrderPage = async ({ params }: { params: Iparams }) => {
         return <NullData title="No Order found" />
     }
     const currentUser = await getCurrentUser()
-    if (!currentUser || currentUser.role !== 'admin') {
+    if (!currentUser) {
         return <NullData title="Oops Access Denied" />
     }
     return (

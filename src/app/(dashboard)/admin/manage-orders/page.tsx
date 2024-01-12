@@ -6,7 +6,7 @@ import { getOrders } from "@/actions/getOrders";
 
 const ManageOrderPage = async () => {
   const currentUser = await getCurrentUser()
-  if (!currentUser || currentUser.role === 'user') {
+  if (!currentUser || currentUser.role !== 'admin') {
     return <NullData title=" Access denied" />
   }
   const orders :any=await getOrders()

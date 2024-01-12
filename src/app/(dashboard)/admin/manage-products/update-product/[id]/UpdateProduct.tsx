@@ -175,7 +175,7 @@ const UpdateProduct:React.FC<Iparams> = ({ productId,product }) => {
 
     return (
         <div>
-            <div className="w-max-[200px] flex justify-center mb-2">
+            <div className="w-max-[200px] flex justify-center my-4">
                 <Heading title="Update Products" />
 
             </div>

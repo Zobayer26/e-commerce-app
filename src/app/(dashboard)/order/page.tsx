@@ -5,7 +5,7 @@ const page = () => {
   
     return (
         <div>
-          <  NullData title='something wen wrong'/>  
+          <  NullData title='something went wrong'/>  
         </div>
     );
 };
